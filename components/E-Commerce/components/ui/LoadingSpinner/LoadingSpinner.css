@@ -1,0 +1,135 @@
+/* ============================================
+   COMPONENT: LoadingSpinner
+   Loading indicator styles
+   ============================================ */
+
+/* ==================== DEFAULT SPINNER ==================== */
+
+.spinner {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.spinner__svg {
+	animation: spin 1s linear infinite;
+}
+
+.spinner__track {
+	opacity: 0.2;
+}
+
+.spinner__indicator {
+	stroke-dasharray: 60;
+	stroke-dashoffset: 45;
+}
+
+/* Size variants */
+.spinner--sm {
+	width: 16px;
+	height: 16px;
+}
+
+.spinner--md {
+	width: 24px;
+	height: 24px;
+}
+
+.spinner--lg {
+	width: 32px;
+	height: 32px;
+}
+
+.spinner--xl {
+	width: 48px;
+	height: 48px;
+}
+
+/* ==================== DOTS SPINNER ==================== */
+
+.spinner-dots {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+}
+
+.spinner-dots__dot {
+	background-color: currentColor;
+	border-radius: var(--radius-full);
+	animation: dotPulse 1.4s ease-in-out infinite;
+}
+
+.spinner-dots__dot:nth-child(1) {
+	animation-delay: 0s;
+}
+
+.spinner-dots__dot:nth-child(2) {
+	animation-delay: 0.2s;
+}
+
+.spinner-dots__dot:nth-child(3) {
+	animation-delay: 0.4s;
+}
+
+/* Size variants */
+.spinner-dots--sm .spinner-dots__dot {
+	width: 4px;
+	height: 4px;
+}
+
+.spinner-dots--md .spinner-dots__dot {
+	width: 6px;
+	height: 6px;
+}
+
+.spinner-dots--lg .spinner-dots__dot {
+	width: 8px;
+	height: 8px;
+}
+
+.spinner-dots--xl .spinner-dots__dot {
+	width: 12px;
+	height: 12px;
+}
+
+@keyframes dotPulse {
+	0%,
+	80%,
+	100% {
+		transform: scale(0.6);
+		opacity: 0.5;
+	}
+	40% {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+/* ==================== PULSE SPINNER ==================== */
+
+.spinner-pulse {
+	background-color: currentColor;
+	border-radius: var(--radius-full);
+	animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Size variants */
+.spinner-pulse--sm {
+	width: 16px;
+	height: 16px;
+}
+
+.spinner-pulse--md {
+	width: 24px;
+	height: 24px;
+}
+
+.spinner-pulse--lg {
+	width: 32px;
+	height: 32px;
+}
+
+.spinner-pulse--xl {
+	width: 48px;
+	height: 48px;
+}

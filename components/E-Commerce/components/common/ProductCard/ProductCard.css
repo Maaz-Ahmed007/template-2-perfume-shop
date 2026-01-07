@@ -1,0 +1,382 @@
+/* ============================================
+   COMPONENT: ProductCard
+   Product card styles - ENHANCED
+   ============================================ */
+
+/* ==================== CARD CONTAINER ==================== */
+
+.product-card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	background-color: var(--color-white);
+	border-radius: var(--radius-2xl);
+	overflow: hidden;
+	transition: transform var(--duration-normal) var(--ease-out);
+}
+
+.product-card__link {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	text-decoration: none;
+	color: inherit;
+}
+
+/* ==================== IMAGE CONTAINER ==================== */
+
+.product-card__image-container {
+	position: relative;
+	aspect-ratio: var(--product-card-aspect);
+	background-color: var(--color-neutral-100);
+	border-radius: var(--radius-2xl);
+	overflow: hidden;
+}
+
+/* Base image styles */
+.product-card__image {
+	position: absolute;
+	inset: 0;
+	transition: opacity 500ms ease-out, transform 500ms ease-out;
+}
+
+/* Primary image */
+.product-card__image--primary {
+	z-index: 1;
+	opacity: 1;
+}
+
+.product-card__image--primary.product-card__image--hidden {
+	opacity: 0;
+}
+
+/* Hover image */
+.product-card__image--hover {
+	z-index: 2;
+	opacity: 0;
+}
+
+.product-card__image--hover.product-card__image--visible {
+	opacity: 1;
+}
+
+/* Scale effect on hover */
+.product-card:hover .product-card__image {
+	transform: scale(1.03);
+}
+
+/* ==================== BADGES ==================== */
+
+.product-card__badges {
+	position: absolute;
+	top: var(--space-4);
+	left: var(--space-4);
+	z-index: 10;
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-2);
+}
+
+/* ==================== WISHLIST BUTTON ==================== */
+
+.product-card__wishlist {
+	position: absolute;
+	top: var(--space-4);
+	right: var(--space-4);
+	z-index: 10;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	background-color: rgba(255, 255, 255, 0.9);
+	backdrop-filter: blur(4px);
+	border: none;
+	border-radius: var(--radius-full);
+	color: var(--color-neutral-600);
+	cursor: pointer;
+	opacity: 0;
+	transform: translateY(-8px);
+	transition: opacity var(--duration-normal) var(--ease-out),
+		transform var(--duration-normal) var(--ease-out),
+		background-color var(--duration-normal) var(--ease-out),
+		color var(--duration-normal) var(--ease-out);
+}
+
+.product-card__wishlist--visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.product-card__wishlist--active {
+	background-color: var(--color-red-500);
+	color: var(--color-white);
+}
+
+.product-card__wishlist:hover:not(.product-card__wishlist--active) {
+	background-color: var(--color-white);
+	color: var(--color-red-500);
+}
+
+.product-card__wishlist:active {
+	transform: scale(0.9);
+}
+
+.product-card__wishlist-icon {
+	width: 22px;
+	height: 22px;
+}
+
+/* ==================== OVERLAY ==================== */
+
+.product-card__overlay {
+	position: absolute;
+	inset: 0;
+	background-color: rgba(0, 0, 0, 0);
+	pointer-events: none;
+	transition: background-color 500ms ease-out;
+}
+
+.product-card__overlay--visible {
+	background-color: rgba(0, 0, 0, 0.08);
+}
+
+/* ==================== QUICK ACTIONS ==================== */
+
+.product-card__actions {
+	position: absolute;
+	bottom: var(--space-4);
+	left: var(--space-4);
+	right: var(--space-4);
+	z-index: 10;
+	display: flex;
+	gap: var(--space-2);
+	opacity: 0;
+	transform: translateY(16px);
+	transition: opacity 400ms ease-out, transform 400ms ease-out;
+}
+
+.product-card__actions--visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.product-card__action {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--space-2);
+	height: 48px;
+	padding: 0 var(--space-4);
+	font-size: var(--text-sm);
+	font-weight: var(--font-semibold);
+	border: none;
+	border-radius: var(--radius-xl);
+	cursor: pointer;
+	transition: background-color var(--duration-normal) var(--ease-out),
+		color var(--duration-normal) var(--ease-out), transform 150ms ease-out;
+}
+
+.product-card__action:active {
+	transform: scale(0.95);
+}
+
+.product-card__action--primary {
+	flex: 1;
+	background-color: var(--color-white);
+	color: var(--color-black);
+}
+
+.product-card__action--primary:hover {
+	background-color: var(--color-black);
+	color: var(--color-white);
+}
+
+.product-card__action--secondary {
+	width: 48px;
+	padding: 0;
+	background-color: var(--color-white);
+	color: var(--color-black);
+}
+
+.product-card__action--secondary:hover {
+	background-color: var(--color-black);
+	color: var(--color-white);
+}
+
+.product-card__action-icon {
+	width: 18px;
+	height: 18px;
+}
+
+/* ==================== PRODUCT INFO ==================== */
+
+.product-card__info {
+	padding: var(--space-5) var(--space-1) var(--space-2);
+	user-select: none;
+}
+
+.product-card__category {
+	display: block;
+	font-size: var(--text-xs);
+	font-weight: var(--font-medium);
+	text-transform: uppercase;
+	letter-spacing: var(--tracking-wider);
+	color: var(--color-neutral-400);
+}
+
+.product-card__name {
+	margin-top: var(--space-1);
+	font-size: var(--text-base);
+	font-weight: var(--font-semibold);
+	line-height: var(--leading-snug);
+	color: var(--color-neutral-900);
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	transition: color var(--duration-normal) var(--ease-out);
+}
+
+.product-card:hover .product-card__name {
+	color: var(--color-black);
+}
+
+.product-card__rating {
+	margin-top: var(--space-2);
+}
+
+/* ==================== FOOTER (Price & Colors) ==================== */
+
+.product-card__footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: var(--space-3);
+	gap: var(--space-3);
+}
+
+.product-card__price {
+	display: flex;
+	align-items: baseline;
+	gap: var(--space-2);
+}
+
+.product-card__price-current {
+	font-size: var(--text-lg);
+	font-weight: var(--font-bold);
+	color: var(--color-black);
+}
+
+.product-card__price-original {
+	font-size: var(--text-sm);
+	color: var(--color-neutral-400);
+	text-decoration: line-through;
+}
+
+/* ==================== COLORS - ENHANCED ==================== */
+
+.product-card__colors {
+	display: flex;
+	align-items: center;
+	gap: var(--space-2);
+	flex-shrink: 0;
+	padding: var(--space-1);
+	margin: calc(var(--space-1) * -1);
+}
+
+.product-card__color {
+	position: relative;
+	width: 24px;
+	height: 24px;
+	padding: 0;
+	border: 2px solid var(--color-white);
+	border-radius: var(--radius-full);
+	cursor: pointer;
+	box-shadow: 0 0 0 1px var(--color-neutral-200);
+	transition: transform 200ms ease-out, box-shadow 200ms ease-out;
+}
+
+/* Larger touch target on mobile */
+.product-card__color::before {
+	content: "";
+	position: absolute;
+	inset: -6px;
+	border-radius: var(--radius-full);
+}
+
+.product-card__color:hover {
+	transform: scale(1.15);
+	box-shadow: 0 0 0 2px var(--color-neutral-400);
+}
+
+.product-card__color--selected {
+	box-shadow: 0 0 0 2px var(--color-black);
+	transform: scale(1.1);
+}
+
+.product-card__color--selected:hover {
+	box-shadow: 0 0 0 2px var(--color-black);
+}
+
+/* Active/tap state */
+.product-card__color:active {
+	transform: scale(0.95);
+}
+
+.product-card__color-more {
+	font-size: var(--text-xs);
+	color: var(--color-neutral-500);
+	font-weight: var(--font-medium);
+	padding-left: var(--space-1);
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 640px) {
+	.product-card__name {
+		font-size: var(--text-sm);
+	}
+
+	.product-card__price-current {
+		font-size: var(--text-base);
+	}
+
+	/* Always show wishlist on mobile */
+	.product-card__wishlist {
+		opacity: 1;
+		transform: translateY(0);
+		width: 40px;
+		height: 40px;
+	}
+
+	.product-card__wishlist-icon {
+		width: 20px;
+		height: 20px;
+	}
+
+	/* Hide quick actions on mobile - use tap instead */
+	.product-card__actions {
+		display: none;
+	}
+
+	/* Slightly larger colors on mobile for easier tapping */
+	.product-card__color {
+		width: 28px;
+		height: 28px;
+	}
+}
+
+/* ==================== TOUCH FEEDBACK ==================== */
+
+@media (hover: none) {
+	.product-card__color:hover {
+		transform: none;
+		box-shadow: 0 0 0 1px var(--color-neutral-200);
+	}
+
+	.product-card__color--selected:hover {
+		transform: scale(1.1);
+		box-shadow: 0 0 0 2px var(--color-black);
+	}
+}

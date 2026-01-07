@@ -1,0 +1,147 @@
+/* ============================================
+   COMPONENT: ColorSwatch
+   Color selection swatches
+   ============================================ */
+
+/* ==================== GROUP CONTAINER ==================== */
+
+.color-swatch-group {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+
+/* ==================== SINGLE SWATCH ==================== */
+
+.color-swatch {
+	position: relative;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	border-radius: var(--radius-full);
+	border: 2px solid var(--color-white);
+	box-shadow: 0 0 0 1px var(--color-neutral-200);
+
+	cursor: pointer;
+
+	transition: transform var(--duration-fast) var(--ease-out),
+		box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.color-swatch:hover {
+	transform: scale(1.2);
+	box-shadow: 0 0 0 2px var(--color-neutral-400);
+}
+
+.color-swatch--selected {
+	box-shadow: 0 0 0 2px var(--color-black);
+}
+
+.color-swatch--selected:hover {
+	box-shadow: 0 0 0 2px var(--color-black);
+}
+
+/* ==================== SIZE VARIANTS ==================== */
+
+.color-swatch--sm {
+	width: 16px;
+	height: 16px;
+}
+
+.color-swatch--md {
+	width: 20px;
+	height: 20px;
+}
+
+.color-swatch--lg {
+	width: 28px;
+	height: 28px;
+}
+
+/* ==================== CHECK ICON ==================== */
+
+.color-swatch__check {
+	color: var(--color-white);
+}
+
+.color-swatch--light .color-swatch__check {
+	color: var(--color-black);
+}
+
+.color-swatch--sm .color-swatch__check {
+	width: 10px;
+	height: 10px;
+}
+
+.color-swatch--md .color-swatch__check {
+	width: 12px;
+	height: 12px;
+}
+
+.color-swatch--lg .color-swatch__check {
+	width: 16px;
+	height: 16px;
+}
+
+/* ==================== TOOLTIP ==================== */
+
+.color-swatch__tooltip {
+	position: absolute;
+	bottom: calc(100% + 8px);
+	left: 50%;
+	transform: translateX(-50%);
+
+	padding: var(--space-1) var(--space-2);
+
+	font-size: 10px;
+	font-weight: var(--font-medium);
+	white-space: nowrap;
+
+	background-color: var(--color-neutral-900);
+	color: var(--color-white);
+	border-radius: var(--radius-md);
+
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+
+	transition: opacity var(--duration-fast) var(--ease-out),
+		visibility var(--duration-fast) var(--ease-out);
+}
+
+.color-swatch:hover .color-swatch__tooltip {
+	opacity: 1;
+	visibility: visible;
+}
+
+.color-swatch__tooltip::after {
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	border: 4px solid transparent;
+	border-top-color: var(--color-neutral-900);
+}
+
+/* ==================== REMAINING COUNT ==================== */
+
+.color-swatch-more {
+	color: var(--color-neutral-500);
+	font-weight: var(--font-medium);
+	margin-left: 2px;
+}
+
+.color-swatch-more--sm {
+	font-size: 10px;
+}
+
+.color-swatch-more--md {
+	font-size: var(--text-xs);
+}
+
+.color-swatch-more--lg {
+	font-size: var(--text-sm);
+}

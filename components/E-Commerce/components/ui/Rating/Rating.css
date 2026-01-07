@@ -1,0 +1,85 @@
+/* ============================================
+   COMPONENT: Rating
+   Star rating display
+   ============================================ */
+
+/* ==================== BASE STYLES ==================== */
+
+.rating {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--space-2);
+}
+
+.rating__stars {
+	display: flex;
+	align-items: center;
+	gap: 1px;
+}
+
+.rating__star {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	line-height: 1;
+}
+
+.rating__star-icon {
+	transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.rating__star-icon--filled {
+	color: var(--color-amber-400);
+}
+
+.rating__star-icon--empty {
+	color: var(--color-neutral-200);
+}
+
+/* Hover effect on container */
+.rating:hover .rating__star-icon {
+	transform: scale(1.1);
+}
+
+/* ==================== SIZE VARIANTS ==================== */
+
+.rating--sm .rating__star-icon {
+	width: 12px;
+	height: 12px;
+}
+
+.rating--sm .rating__value,
+.rating--sm .rating__count {
+	font-size: var(--text-xs);
+}
+
+.rating--md .rating__star-icon {
+	width: 14px;
+	height: 14px;
+}
+
+.rating--md .rating__value,
+.rating--md .rating__count {
+	font-size: var(--text-xs);
+}
+
+.rating--lg .rating__star-icon {
+	width: 18px;
+	height: 18px;
+}
+
+.rating--lg .rating__value,
+.rating--lg .rating__count {
+	font-size: var(--text-sm);
+}
+
+/* ==================== TEXT ELEMENTS ==================== */
+
+.rating__value {
+	font-weight: var(--font-semibold);
+	color: var(--color-neutral-900);
+}
+
+.rating__count {
+	color: var(--color-neutral-500);
+}

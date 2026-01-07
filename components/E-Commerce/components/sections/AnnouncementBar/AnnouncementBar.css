@@ -1,0 +1,197 @@
+/* ============================================
+   COMPONENT: AnnouncementBar
+   Top announcement/promotion bar
+   ============================================ */
+
+/* ==================== BASE STYLES ==================== */
+
+.announcement-bar {
+	position: relative;
+	padding: var(--space-2) var(--space-4);
+	overflow: hidden;
+}
+
+.announcement-bar__container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--space-4);
+
+	max-width: var(--max-width-container);
+	margin: 0 auto;
+}
+
+.announcement-bar__link {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+	color: inherit;
+}
+
+.announcement-bar__content {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--space-2);
+
+	font-size: var(--text-xs);
+	text-align: center;
+}
+
+@media (min-width: 640px) {
+	.announcement-bar {
+		padding: var(--space-3) var(--space-4);
+	}
+
+	.announcement-bar__content {
+		font-size: var(--text-sm);
+		gap: var(--space-3);
+	}
+}
+
+/* ==================== VARIANTS ==================== */
+
+/* Default - Dark */
+.announcement-bar--default {
+	background-color: var(--color-neutral-900);
+	color: var(--color-white);
+}
+
+/* Sale - Black with accent */
+.announcement-bar--sale {
+	background-color: var(--color-black);
+	color: var(--color-white);
+}
+
+/* Info - Light */
+.announcement-bar--info {
+	background-color: var(--color-neutral-100);
+	color: var(--color-neutral-900);
+}
+
+/* ==================== INNER ELEMENTS ==================== */
+
+.announcement-bar__icon {
+	width: 16px;
+	height: 16px;
+	color: var(--color-amber-400);
+	animation: pulse 2s var(--ease-in-out) infinite;
+	flex-shrink: 0;
+}
+
+.announcement-bar__highlight {
+	font-weight: var(--font-bold);
+	color: var(--color-amber-400);
+	letter-spacing: var(--tracking-wide);
+}
+
+.announcement-bar--info .announcement-bar__highlight {
+	color: var(--color-red-600);
+}
+
+.announcement-bar__separator {
+	color: var(--color-neutral-500);
+	opacity: 0.5;
+}
+
+.announcement-bar__text {
+	color: var(--color-neutral-300);
+}
+
+.announcement-bar--info .announcement-bar__text {
+	color: var(--color-neutral-600);
+}
+
+/* Additional items - only visible on larger screens */
+.announcement-bar__additional {
+	display: none;
+	align-items: center;
+	gap: var(--space-3);
+}
+
+@media (min-width: 768px) {
+	.announcement-bar__additional {
+		display: flex;
+	}
+}
+
+/* ==================== DISMISS BUTTON ==================== */
+
+.announcement-bar__dismiss {
+	position: absolute;
+	right: var(--space-3);
+	top: 50%;
+	transform: translateY(-50%);
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	width: 24px;
+	height: 24px;
+
+	background: transparent;
+	border: none;
+	border-radius: var(--radius-full);
+
+	color: var(--color-neutral-400);
+	cursor: pointer;
+
+	transition: background-color var(--duration-fast) var(--ease-out),
+		color var(--duration-fast) var(--ease-out);
+}
+
+.announcement-bar__dismiss:hover {
+	background-color: rgba(255, 255, 255, 0.1);
+	color: var(--color-white);
+}
+
+.announcement-bar__dismiss-icon {
+	width: 16px;
+	height: 16px;
+}
+
+/* ==================== DOTS (MOBILE) ==================== */
+
+.announcement-bar__dots {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+
+	margin-top: var(--space-2);
+}
+
+@media (min-width: 768px) {
+	.announcement-bar__dots {
+		display: none;
+	}
+}
+
+.announcement-bar__dot {
+	width: 6px;
+	height: 6px;
+
+	background-color: var(--color-neutral-600);
+	border: none;
+	border-radius: var(--radius-full);
+
+	cursor: pointer;
+
+	transition: background-color var(--duration-fast) var(--ease-out),
+		transform var(--duration-fast) var(--ease-out);
+}
+
+.announcement-bar__dot:hover {
+	background-color: var(--color-neutral-400);
+}
+
+.announcement-bar__dot--active {
+	background-color: var(--color-white);
+	transform: scale(1.3);
+}
+
+.announcement-bar--info .announcement-bar__dot--active {
+	background-color: var(--color-black);
+}

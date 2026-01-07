@@ -1,0 +1,208 @@
+/* ============================================
+   COMPONENT: WhatsAppButton
+   Floating WhatsApp contact button
+   ============================================ */
+
+/* ==================== BASE STYLES ==================== */
+
+.whatsapp-btn {
+	position: fixed;
+	z-index: var(--z-floating);
+
+	display: flex;
+	align-items: center;
+
+	text-decoration: none;
+
+	/* Initial state - hidden */
+	opacity: 0;
+	visibility: hidden;
+	transform: scale(0.8) translateY(20px);
+
+	transition: opacity var(--duration-normal) var(--ease-out),
+		visibility var(--duration-normal) var(--ease-out),
+		transform var(--duration-normal) var(--ease-out);
+}
+
+.whatsapp-btn--visible {
+	opacity: 1;
+	visibility: visible;
+	transform: scale(1) translateY(0);
+}
+
+/* ==================== POSITIONS ==================== */
+
+.whatsapp-btn--bottom-right {
+	bottom: var(--space-6);
+	right: var(--space-6);
+}
+
+.whatsapp-btn--bottom-left {
+	bottom: var(--space-6);
+	left: var(--space-6);
+}
+
+/* ==================== BUTTON BODY ==================== */
+
+.whatsapp-btn__body {
+	position: relative;
+	z-index: 1;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	width: 56px;
+	height: 56px;
+
+	background-color: #25d366;
+	border-radius: var(--radius-full);
+
+	box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4), 0 2px 4px rgba(0, 0, 0, 0.1);
+
+	transition: background-color var(--duration-normal) var(--ease-out),
+		transform var(--duration-normal) var(--ease-out),
+		box-shadow var(--duration-normal) var(--ease-out);
+}
+
+.whatsapp-btn:hover .whatsapp-btn__body {
+	background-color: #20bd5a;
+	transform: scale(1.1);
+	box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5),
+		0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.whatsapp-btn:active .whatsapp-btn__body {
+	transform: scale(0.95);
+}
+
+.whatsapp-btn__icon {
+	width: 28px;
+	height: 28px;
+	color: var(--color-white);
+}
+
+/* ==================== PING ANIMATION ==================== */
+
+.whatsapp-btn__ping {
+	position: absolute;
+	inset: 0;
+
+	background-color: #25d366;
+	border-radius: var(--radius-full);
+
+	animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+	opacity: 0.2;
+}
+
+@keyframes ping {
+	75%,
+	100% {
+		transform: scale(1.5);
+		opacity: 0;
+	}
+}
+
+/* ==================== TOOLTIP ==================== */
+
+.whatsapp-btn__tooltip {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%) translateX(8px);
+
+	padding: var(--space-2) var(--space-4);
+
+	font-size: var(--text-sm);
+	font-weight: var(--font-medium);
+	white-space: nowrap;
+
+	background-color: var(--color-neutral-900);
+	color: var(--color-white);
+	border-radius: var(--radius-xl);
+
+	box-shadow: var(--shadow-lg);
+
+	/* Initial state */
+	opacity: 0;
+	visibility: hidden;
+
+	transition: opacity var(--duration-normal) var(--ease-out),
+		visibility var(--duration-normal) var(--ease-out),
+		transform var(--duration-normal) var(--ease-out);
+}
+
+/* Position tooltip based on button position */
+.whatsapp-btn--bottom-right .whatsapp-btn__tooltip {
+	right: calc(100% + var(--space-4));
+	left: auto;
+}
+
+.whatsapp-btn--bottom-left .whatsapp-btn__tooltip {
+	left: calc(100% + var(--space-4));
+	right: auto;
+}
+
+.whatsapp-btn__tooltip--visible {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(-50%) translateX(0);
+}
+
+/* Tooltip arrow */
+.whatsapp-btn__tooltip-arrow {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+
+	border: 6px solid transparent;
+}
+
+.whatsapp-btn--bottom-right .whatsapp-btn__tooltip-arrow {
+	left: 100%;
+	border-left-color: var(--color-neutral-900);
+}
+
+.whatsapp-btn--bottom-left .whatsapp-btn__tooltip-arrow {
+	right: 100%;
+	border-right-color: var(--color-neutral-900);
+}
+
+/* ==================== MOBILE ADJUSTMENTS ==================== */
+
+@media (max-width: 640px) {
+	.whatsapp-btn--bottom-right,
+	.whatsapp-btn--bottom-left {
+		bottom: var(--space-4);
+	}
+
+	.whatsapp-btn--bottom-right {
+		right: var(--space-4);
+	}
+
+	.whatsapp-btn--bottom-left {
+		left: var(--space-4);
+	}
+
+	.whatsapp-btn__body {
+		width: 52px;
+		height: 52px;
+	}
+
+	.whatsapp-btn__icon {
+		width: 24px;
+		height: 24px;
+	}
+
+	/* Hide tooltip on mobile - tap behavior is obvious */
+	.whatsapp-btn__tooltip {
+		display: none;
+	}
+}
+
+/* ==================== REDUCED MOTION ==================== */
+
+@media (prefers-reduced-motion: reduce) {
+	.whatsapp-btn__ping {
+		animation: none;
+	}
+}

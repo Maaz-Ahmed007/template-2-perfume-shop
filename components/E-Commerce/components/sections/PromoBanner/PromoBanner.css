@@ -1,0 +1,489 @@
+/* ============================================
+   COMPONENT: PromoBanner
+   Full-width promotional banner
+   ============================================ */
+
+/* ==================== SECTION ==================== */
+
+.promo-banner {
+	position: relative;
+	min-height: 400px;
+	display: flex;
+	align-items: center;
+	overflow: hidden;
+}
+
+@media (min-width: 768px) {
+	.promo-banner {
+		min-height: 480px;
+	}
+}
+
+@media (min-width: 1024px) {
+	.promo-banner {
+		min-height: 520px;
+	}
+}
+
+/* ==================== BACKGROUND ==================== */
+
+.promo-banner__background {
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+}
+
+.promo-banner__background-image {
+	transition: transform 10s ease-out;
+}
+
+.promo-banner:hover .promo-banner__background-image {
+	transform: scale(1.05);
+}
+
+/* Overlay variations */
+.promo-banner__overlay {
+	position: absolute;
+	inset: 0;
+	z-index: 2;
+}
+
+.promo-banner--dark .promo-banner__overlay {
+	background: linear-gradient(
+		135deg,
+		rgba(0, 0, 0, 0.85) 0%,
+		rgba(0, 0, 0, 0.7) 50%,
+		rgba(0, 0, 0, 0.5) 100%
+	);
+}
+
+.promo-banner--light .promo-banner__overlay {
+	background: linear-gradient(
+		135deg,
+		rgba(255, 255, 255, 0.95) 0%,
+		rgba(255, 255, 255, 0.85) 50%,
+		rgba(255, 255, 255, 0.7) 100%
+	);
+}
+
+.promo-banner--gradient .promo-banner__overlay {
+	background: linear-gradient(
+		135deg,
+		rgba(23, 23, 23, 0.95) 0%,
+		rgba(38, 38, 38, 0.85) 50%,
+		rgba(64, 64, 64, 0.75) 100%
+	);
+}
+
+/* Decorative elements */
+.promo-banner__decoration {
+	position: absolute;
+	border-radius: 50%;
+	pointer-events: none;
+	z-index: 3;
+}
+
+.promo-banner__decoration--1 {
+	top: -100px;
+	right: -100px;
+	width: 400px;
+	height: 400px;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	animation: float 8s ease-in-out infinite;
+}
+
+.promo-banner__decoration--2 {
+	bottom: -50px;
+	left: 10%;
+	width: 200px;
+	height: 200px;
+	background: radial-gradient(
+		circle,
+		rgba(255, 255, 255, 0.05) 0%,
+		transparent 70%
+	);
+	animation: float 6s ease-in-out infinite reverse;
+}
+
+.promo-banner__decoration--3 {
+	top: 20%;
+	right: 20%;
+	width: 100px;
+	height: 100px;
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	animation: float 10s ease-in-out infinite;
+}
+
+@keyframes float {
+	0%,
+	100% {
+		transform: translateY(0) rotate(0deg);
+	}
+	50% {
+		transform: translateY(-20px) rotate(5deg);
+	}
+}
+
+/* ==================== CONTAINER ==================== */
+
+.promo-banner__container {
+	position: relative;
+	z-index: 10;
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-8);
+	width: 100%;
+	max-width: var(--max-width-container);
+	margin: 0 auto;
+	padding: var(--space-12) var(--space-4);
+}
+
+@media (min-width: 640px) {
+	.promo-banner__container {
+		padding: var(--space-16) var(--space-6);
+	}
+}
+
+@media (min-width: 1024px) {
+	.promo-banner__container {
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		padding: var(--space-20) var(--space-8);
+	}
+}
+
+/* ==================== CONTENT ==================== */
+
+.promo-banner__content {
+	max-width: 600px;
+}
+
+/* Alignment variations */
+.promo-banner--center .promo-banner__content {
+	text-align: center;
+	margin: 0 auto;
+}
+
+.promo-banner--right .promo-banner__content {
+	margin-left: auto;
+}
+
+@media (min-width: 1024px) {
+	.promo-banner--center .promo-banner__container {
+		flex-direction: column;
+		text-align: center;
+	}
+}
+
+/* Badge */
+.promo-banner__badge {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--space-2);
+	padding: var(--space-2) var(--space-4);
+	margin-bottom: var(--space-6);
+	font-size: var(--text-xs);
+	font-weight: var(--font-bold);
+	text-transform: uppercase;
+	letter-spacing: var(--tracking-wider);
+	border-radius: var(--radius-full);
+	animation: fadeSlideUp 600ms ease-out forwards;
+}
+
+.promo-banner--dark .promo-banner__badge,
+.promo-banner--gradient .promo-banner__badge {
+	color: var(--color-amber-400);
+	background-color: rgba(251, 191, 36, 0.15);
+	border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.promo-banner--light .promo-banner__badge {
+	color: var(--color-neutral-900);
+	background-color: rgba(0, 0, 0, 0.05);
+	border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.promo-banner__badge-icon {
+	width: 14px;
+	height: 14px;
+	animation: pulse 2s ease-in-out infinite;
+}
+
+/* Title */
+.promo-banner__title {
+	font-size: var(--text-3xl);
+	font-weight: var(--font-bold);
+	line-height: var(--leading-tight);
+	margin-bottom: var(--space-4);
+	animation: fadeSlideUp 600ms ease-out forwards;
+	animation-delay: 100ms;
+	opacity: 0;
+}
+
+@media (min-width: 640px) {
+	.promo-banner__title {
+		font-size: var(--text-4xl);
+	}
+}
+
+@media (min-width: 1024px) {
+	.promo-banner__title {
+		font-size: var(--text-5xl);
+	}
+}
+
+.promo-banner--dark .promo-banner__title,
+.promo-banner--gradient .promo-banner__title {
+	color: var(--color-white);
+}
+
+.promo-banner--light .promo-banner__title {
+	color: var(--color-black);
+}
+
+.promo-banner__title-main {
+	display: block;
+}
+
+.promo-banner__title-highlight {
+	display: block;
+	font-weight: var(--font-extrabold);
+	background: linear-gradient(
+		135deg,
+		var(--color-amber-400) 0%,
+		var(--color-amber-500) 100%
+	);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+.promo-banner--light .promo-banner__title-highlight {
+	background: linear-gradient(
+		135deg,
+		var(--color-neutral-900) 0%,
+		var(--color-neutral-700) 100%
+	);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+/* Description */
+.promo-banner__description {
+	font-size: var(--text-base);
+	line-height: var(--leading-relaxed);
+	margin-bottom: var(--space-8);
+	max-width: 480px;
+	animation: fadeSlideUp 600ms ease-out forwards;
+	animation-delay: 200ms;
+	opacity: 0;
+}
+
+@media (min-width: 640px) {
+	.promo-banner__description {
+		font-size: var(--text-lg);
+	}
+}
+
+.promo-banner--dark .promo-banner__description,
+.promo-banner--gradient .promo-banner__description {
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.promo-banner--light .promo-banner__description {
+	color: var(--color-neutral-600);
+}
+
+.promo-banner--center .promo-banner__description {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* CTAs */
+.promo-banner__ctas {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-4);
+	animation: fadeSlideUp 600ms ease-out forwards;
+	animation-delay: 300ms;
+	opacity: 0;
+}
+
+@media (min-width: 480px) {
+	.promo-banner__ctas {
+		flex-direction: row;
+		align-items: center;
+	}
+}
+
+.promo-banner--center .promo-banner__ctas {
+	justify-content: center;
+}
+
+.promo-banner__cta-primary {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--space-2);
+	padding: var(--space-4) var(--space-8);
+	font-size: var(--text-sm);
+	font-weight: var(--font-semibold);
+	text-decoration: none;
+	border-radius: var(--radius-xl);
+	transition: all 300ms ease-out;
+}
+
+.promo-banner--dark .promo-banner__cta-primary,
+.promo-banner--gradient .promo-banner__cta-primary {
+	background-color: var(--color-white);
+	color: var(--color-black);
+}
+
+.promo-banner--dark .promo-banner__cta-primary:hover,
+.promo-banner--gradient .promo-banner__cta-primary:hover {
+	background-color: var(--color-amber-400);
+	transform: translateY(-2px);
+	box-shadow: 0 10px 30px -10px rgba(251, 191, 36, 0.5);
+}
+
+.promo-banner--light .promo-banner__cta-primary {
+	background-color: var(--color-black);
+	color: var(--color-white);
+}
+
+.promo-banner--light .promo-banner__cta-primary:hover {
+	background-color: var(--color-neutral-800);
+	transform: translateY(-2px);
+	box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+}
+
+.promo-banner__cta-primary:active {
+	transform: translateY(0) scale(0.98);
+}
+
+.promo-banner__cta-icon {
+	width: 18px;
+	height: 18px;
+	transition: transform 300ms ease-out;
+}
+
+.promo-banner__cta-primary:hover .promo-banner__cta-icon {
+	transform: translateX(4px);
+}
+
+.promo-banner__cta-secondary {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: var(--space-4) var(--space-6);
+	font-size: var(--text-sm);
+	font-weight: var(--font-semibold);
+	text-decoration: none;
+	border-radius: var(--radius-xl);
+	transition: all 300ms ease-out;
+}
+
+.promo-banner--dark .promo-banner__cta-secondary,
+.promo-banner--gradient .promo-banner__cta-secondary {
+	color: var(--color-white);
+	border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.promo-banner--dark .promo-banner__cta-secondary:hover,
+.promo-banner--gradient .promo-banner__cta-secondary:hover {
+	background-color: rgba(255, 255, 255, 0.1);
+	border-color: rgba(255, 255, 255, 0.5);
+}
+
+.promo-banner--light .promo-banner__cta-secondary {
+	color: var(--color-neutral-700);
+	border: 2px solid var(--color-neutral-300);
+}
+
+.promo-banner--light .promo-banner__cta-secondary:hover {
+	color: var(--color-black);
+	border-color: var(--color-black);
+}
+
+/* ==================== SIDE CONTENT ==================== */
+
+.promo-banner__side {
+	display: none;
+}
+
+@media (min-width: 1024px) {
+	.promo-banner__side {
+		display: block;
+	}
+
+	.promo-banner--center .promo-banner__side {
+		display: none;
+	}
+}
+
+.promo-banner__stats {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-6);
+	padding: var(--space-8);
+	background-color: rgba(255, 255, 255, 0.05);
+	backdrop-filter: blur(10px);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: var(--radius-2xl);
+	animation: fadeSlideUp 600ms ease-out forwards;
+	animation-delay: 400ms;
+	opacity: 0;
+}
+
+.promo-banner--light .promo-banner__stats {
+	background-color: rgba(0, 0, 0, 0.03);
+	border-color: rgba(0, 0, 0, 0.1);
+}
+
+.promo-banner__stat {
+	text-align: center;
+	padding: var(--space-2) var(--space-4);
+}
+
+.promo-banner__stat-value {
+	display: block;
+	font-size: var(--text-2xl);
+	font-weight: var(--font-bold);
+}
+
+.promo-banner--dark .promo-banner__stat-value,
+.promo-banner--gradient .promo-banner__stat-value {
+	color: var(--color-amber-400);
+}
+
+.promo-banner--light .promo-banner__stat-value {
+	color: var(--color-black);
+}
+
+.promo-banner__stat-label {
+	display: block;
+	font-size: var(--text-xs);
+	font-weight: var(--font-medium);
+	text-transform: uppercase;
+	letter-spacing: var(--tracking-wider);
+	margin-top: var(--space-1);
+}
+
+.promo-banner--dark .promo-banner__stat-label,
+.promo-banner--gradient .promo-banner__stat-label {
+	color: rgba(255, 255, 255, 0.6);
+}
+
+.promo-banner--light .promo-banner__stat-label {
+	color: var(--color-neutral-500);
+}
+
+/* ==================== MOBILE OPTIMIZATIONS ==================== */
+
+@media (max-width: 640px) {
+	.promo-banner__decoration {
+		display: none;
+	}
+}
