@@ -1,0 +1,61 @@
+/* src/app/styles/theme.css */
+
+@theme {
+	/* ===== COLOR PALETTE ===== */
+
+	/* Primary - Luxurious Gold */
+	--color-gold-50: oklch(0.98 0.02 85);
+	--color-gold-100: oklch(0.95 0.04 85);
+	--color-gold-200: oklch(0.88 0.08 85);
+	--color-gold-300: oklch(0.8 0.12 80);
+	--color-gold-400: oklch(0.72 0.15 75);
+	--color-gold-500: oklch(0.65 0.16 70);
+	--color-gold-600: oklch(0.55 0.14 65);
+	--color-gold-700: oklch(0.45 0.12 60);
+	--color-gold-800: oklch(0.35 0.08 55);
+	--color-gold-900: oklch(0.25 0.05 50);
+
+	/* Secondary - Deep Noir */
+	--color-noir-50: oklch(0.95 0.005 260);
+	--color-noir-100: oklch(0.85 0.008 260);
+	--color-noir-200: oklch(0.7 0.01 260);
+	--color-noir-300: oklch(0.55 0.012 260);
+	--color-noir-400: oklch(0.4 0.015 260);
+	--color-noir-500: oklch(0.3 0.015 260);
+	--color-noir-600: oklch(0.22 0.012 260);
+	--color-noir-700: oklch(0.16 0.01 260);
+	--color-noir-800: oklch(0.12 0.008 260);
+	--color-noir-900: oklch(0.08 0.005 260);
+	--color-noir-950: oklch(0.05 0.003 260);
+
+	/* Accent - Rose Blush */
+	--color-rose-50: oklch(0.97 0.02 10);
+	--color-rose-100: oklch(0.93 0.04 10);
+	--color-rose-200: oklch(0.88 0.06 5);
+	--color-rose-300: oklch(0.8 0.1 0);
+	--color-rose-400: oklch(0.7 0.14 355);
+	--color-rose-500: oklch(0.6 0.16 350);
+	--color-rose-600: oklch(0.5 0.14 345);
+	--color-rose-700: oklch(0.42 0.12 340);
+
+	/* Cream - Warm Ivory */
+	--color-ivory-50: oklch(0.995 0.005 90);
+	--color-ivory-100: oklch(0.98 0.01 85);
+	--color-ivory-200: oklch(0.96 0.015 80);
+	--color-ivory-300: oklch(0.93 0.02 75);
+	--color-ivory-400: oklch(0.88 0.025 70);
+
+	/* ===== FONTS ===== */
+	--font-heading: "Playfair Display", serif;
+	--font-body: "Inter", system-ui, sans-serif;
+	--font-accent: "Cormorant Garamond", serif;
+
+	/* ===== SHADOWS ===== */
+	--shadow-luxury: 0 4px 30px oklch(0.65 0.16 70 / 0.15);
+	--shadow-luxury-lg: 0 10px 50px oklch(0.65 0.16 70 / 0.25);
+	--shadow-luxury-xl: 0 25px 80px oklch(0.65 0.16 70 / 0.3);
+	--shadow-glass: 0 8px 32px oklch(0 0 0 / 0.1);
+	--shadow-glass-dark: 0 8px 32px oklch(0 0 0 / 0.4);
+	--shadow-elevated: 0 20px 60px oklch(0 0 0 / 0.15);
+	--shadow-soft: 0 2px 15px oklch(0 0 0 / 0.06);
+}

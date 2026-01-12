@@ -1,0 +1,149 @@
+/* src/app/styles/utilities.css */
+
+@layer utilities {
+	/* Containers */
+	.container-luxury {
+		width: 100%;
+		max-width: 1024px;
+		margin-inline: auto;
+		padding-inline: 1rem;
+	}
+
+	.container-wide {
+		width: 100%;
+		max-width: 1152px;
+		margin-inline: auto;
+		padding-inline: 1rem;
+	}
+
+	@media (min-width: 480px) {
+		.container-luxury,
+		.container-wide {
+			padding-inline: 1.25rem;
+		}
+	}
+
+	@media (min-width: 768px) {
+		.container-luxury,
+		.container-wide {
+			padding-inline: 1.5rem;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.container-luxury,
+		.container-wide {
+			padding-inline: 2rem;
+		}
+	}
+
+	/* Text Gradients */
+	.text-gradient-gold {
+		background: linear-gradient(
+			135deg,
+			var(--color-gold-400) 0%,
+			var(--color-gold-300) 30%,
+			var(--color-gold-500) 60%,
+			var(--color-gold-300) 100%
+		);
+		background-size: 200% auto;
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+		animation: shimmer 4s linear infinite;
+	}
+
+	/* Glass Effects */
+	.glass {
+		background: oklch(1 0 0 / 0.06);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+		border: 1px solid oklch(1 0 0 / 0.1);
+	}
+
+	.glass-dark {
+		background: oklch(0 0 0 / 0.35);
+		backdrop-filter: blur(16px);
+		-webkit-backdrop-filter: blur(16px);
+		border: 1px solid oklch(1 0 0 / 0.06);
+	}
+
+	.glass-gold {
+		background: linear-gradient(
+			135deg,
+			oklch(0.65 0.16 70 / 0.08),
+			oklch(0.65 0.16 70 / 0.04)
+		);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+		border: 1px solid oklch(0.65 0.16 70 / 0.15);
+	}
+
+	/* Hover Effects */
+	.hover-lift {
+		transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+			box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	.hover-lift:hover {
+		transform: translateY(-6px);
+		box-shadow: var(--shadow-elevated);
+	}
+
+	.hover-scale {
+		transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	.hover-scale:hover {
+		transform: scale(1.03);
+	}
+
+	.hover-scale:active {
+		transform: scale(0.98);
+	}
+
+	/* Section Padding */
+	.section-py {
+		padding-block: 3rem;
+	}
+
+	@media (min-width: 768px) {
+		.section-py {
+			padding-block: 4rem;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.section-py {
+			padding-block: 5rem;
+		}
+	}
+
+	/* Hide Scrollbar */
+	.no-scrollbar {
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
+
+	.no-scrollbar::-webkit-scrollbar {
+		display: none;
+	}
+
+	/* Safe Areas */
+	.safe-bottom {
+		padding-bottom: env(safe-area-inset-bottom, 0);
+	}
+
+	.safe-top {
+		padding-top: env(safe-area-inset-top, 0);
+	}
+
+	/* Aspect Ratios */
+	.aspect-product {
+		aspect-ratio: 3 / 4;
+	}
+
+	.aspect-card {
+		aspect-ratio: 4 / 5;
+	}
+}

@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "components/E-Commerce/components/ui/LoadingSpinner"  ],
+  ],
   "exclude": ["node_modules"]
 }
