@@ -1,7 +1,6 @@
-// src/hooks/useScrollPosition.ts
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useSyncExternalStore, useCallback, useRef } from "react";
 
 interface ScrollPosition {
 	y: number;
@@ -10,46 +9,37 @@ interface ScrollPosition {
 }
 
 export function useScrollPosition(threshold: number = 50): ScrollPosition {
-	const [scrollPosition, setScrollPosition] = useState<ScrollPosition>({
-		y: 0,
-		direction: null,
-		isScrolled: false,
-	});
-
 	const lastScrollY = useRef(0);
-	const ticking = useRef(false);
 
-	const updateScrollPosition = useCallback(() => {
+	const subscribe = useCallback((callback: () => void) => {
+		window.addEventListener("scroll", callback, { passive: true });
+		return () => window.removeEventListener("scroll", callback);
+	}, []);
+
+	const getSnapshot = useCallback((): ScrollPosition => {
 		const currentY = window.scrollY;
-
-		setScrollPosition({
-			y: currentY,
-			direction:
-				currentY > lastScrollY.current
-					? "down"
-					: currentY < lastScrollY.current
-					? "up"
-					: null,
-			isScrolled: currentY > threshold,
-		});
-
+		const direction: "up" | "down" | null =
+			currentY > lastScrollY.current
+				? "down"
+				: currentY < lastScrollY.current
+				? "up"
+				: null;
 		lastScrollY.current = currentY;
-		ticking.current = false;
+
+		return {
+			y: currentY,
+			direction,
+			isScrolled: currentY > threshold,
+		};
 	}, [threshold]);
 
-	const handleScroll = useCallback(() => {
-		if (!ticking.current) {
-			requestAnimationFrame(updateScrollPosition);
-			ticking.current = true;
-		}
-	}, [updateScrollPosition]);
+	const getServerSnapshot = useCallback((): ScrollPosition => {
+		return {
+			y: 0,
+			direction: null,
+			isScrolled: false,
+		};
+	}, []);
 
-	useEffect(() => {
-		updateScrollPosition();
-
-		window.addEventListener("scroll", handleScroll, { passive: true });
-		return () => window.removeEventListener("scroll", handleScroll);
-	}, [handleScroll, updateScrollPosition]);
-
-	return scrollPosition;
+	return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 }

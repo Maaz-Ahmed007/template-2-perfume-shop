@@ -31,14 +31,23 @@ export default function Navbar() {
 	const [hoveredLink, setHoveredLink] = useState<string | null>(null);
 	const isMobile = useMediaQuery("(max-width: 1023px)");
 
-	useEffect(() => {
-		if (!isMobile && isMobileMenuOpen) {
-			setIsMobileMenuOpen(false);
-		}
-	}, [isMobile, isMobileMenuOpen]);
+	const showMobileMenu = isMobile && isMobileMenuOpen;
 
 	useEffect(() => {
-		if (isMobileMenuOpen) {
+		const media = window.matchMedia("(max-width: 1023px)");
+
+		const handleChange = (e: MediaQueryListEvent) => {
+			if (!e.matches) {
+				setIsMobileMenuOpen(false);
+			}
+		};
+
+		media.addEventListener("change", handleChange);
+		return () => media.removeEventListener("change", handleChange);
+	}, []);
+
+	useEffect(() => {
+		if (showMobileMenu) {
 			document.body.style.overflow = "hidden";
 		} else {
 			document.body.style.overflow = "";
@@ -46,7 +55,7 @@ export default function Navbar() {
 		return () => {
 			document.body.style.overflow = "";
 		};
-	}, [isMobileMenuOpen]);
+	}, [showMobileMenu]);
 
 	const toggleMobileMenu = useCallback(() => {
 		setIsMobileMenuOpen((prev) => !prev);

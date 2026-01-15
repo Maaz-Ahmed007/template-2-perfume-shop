@@ -1,7 +1,6 @@
-// src/components/sections/FeaturedProducts.tsx
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect, use } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { FEATURED_PRODUCTS } from "@/lib/constants";
@@ -17,10 +16,34 @@ import {
 
 export default function FeaturedProducts() {
 	const [scrollPosition, setScrollPosition] = useState(0);
+	const [currentPage, setCurrentPage] = useState(0);
 	const scrollContainerRef = useRef<HTMLDivElement>(null);
 
 	const { ref: sectionRef, isInView } = useInView({ threshold: 0.1 });
 	const isDesktop = useMediaQuery("(min-width: 1024px)");
+
+	const totalPages = Math.ceil(FEATURED_PRODUCTS.length / 2);
+
+	useEffect(() => {
+		const container = scrollContainerRef.current;
+		if (!container || isDesktop) return;
+
+		const updateCurrentPage = () => {
+			const totalScrollable =
+				container.scrollWidth - container.clientWidth;
+			if (totalScrollable > 0) {
+				const page = Math.round(
+					(container.scrollLeft / totalScrollable) * (totalPages - 1)
+				);
+				setCurrentPage(page);
+			}
+		};
+
+		updateCurrentPage();
+
+		container.addEventListener("scroll", updateCurrentPage);
+		return () => container.removeEventListener("scroll", updateCurrentPage);
+	}, [isDesktop, totalPages]);
 
 	const scroll = (direction: "left" | "right") => {
 		if (!scrollContainerRef.current) return;
@@ -39,6 +62,18 @@ export default function FeaturedProducts() {
 		if (scrollContainerRef.current) {
 			setScrollPosition(scrollContainerRef.current.scrollLeft);
 		}
+	};
+
+	const handlePageClick = (pageIndex: number) => {
+		const container = scrollContainerRef.current;
+		if (!container || !isDesktop) return;
+
+		const totalScrollable = container.scrollWidth - container.clientWidth;
+		const scrollTo = totalScrollable * (pageIndex / (totalPages - 1));
+		container.scrollTo({
+			left: scrollTo,
+			behavior: "smooth",
+		});
 	};
 
 	// Animation style helper
@@ -234,15 +269,6 @@ export default function FeaturedProducts() {
 								)
 							),
 						].map((_, i) => {
-							const totalScrollable = scrollContainerRef.current
-								? scrollContainerRef.current.scrollWidth -
-								  scrollContainerRef.current.clientWidth
-								: 1;
-							const currentPage = Math.round(
-								(scrollPosition / totalScrollable) *
-									(Math.ceil(FEATURED_PRODUCTS.length / 2) -
-										1)
-							);
 							const isActive = isDesktop
 								? i === 0
 								: i === currentPage;
@@ -250,30 +276,7 @@ export default function FeaturedProducts() {
 							return (
 								<button
 									key={i}
-									onClick={() => {
-										if (
-											scrollContainerRef.current &&
-											!isDesktop
-										) {
-											const scrollTo =
-												(scrollContainerRef.current
-													.scrollWidth -
-													scrollContainerRef.current
-														.clientWidth) *
-												(i /
-													(Math.ceil(
-														FEATURED_PRODUCTS.length /
-															2
-													) -
-														1));
-											scrollContainerRef.current.scrollTo(
-												{
-													left: scrollTo,
-													behavior: "smooth",
-												}
-											);
-										}
-									}}
+									onClick={() => handlePageClick(i)}
 									className={cn(
 										"transition-all duration-300 rounded-full",
 										isActive
